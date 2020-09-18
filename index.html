@@ -38,11 +38,11 @@
     fetchSong() {
       this.isLoading = true;
       
-      const data = { username: 'example' };
+      const data = { song: 'example' };
       
       fetch(`https://hooks.zapier.com/hooks/catch/835758/ouz6lbw/${this.songSearch}`, {
         method: 'POST',
-        body: data
+        body: JSON.stringify(data)
       }).then(res => res.json())
         .then(data => {
           this.isLoading = false;
