@@ -5,17 +5,56 @@
   <!--  Meta  -->
   <meta charset="UTF-8" />
   <title>FFS</title>
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 <body>
+  <div x-data="songSearch()" x-init="fetchSong()">
+    <input type="text" name="songSearch" x-model="songSearch" placeholder="What's your song?"/>
+    <button type="submit" @click="fetchSong()" :class="[isLoading ? 'disallowed' : '']">Search</button>
+  </div>
+  
+  <hr/>
+  
   <form id="myForm" action="https://hooks.zapier.com/hooks/catch/835758/ouz6lbw/" type="POST">
     <input type="text" name="song-name" placeholder="What's your song?"/>
-    <input type="submit" value="Submit" id="Form-submit"/>
+    <!--<input type="submit" value="Submit" id="Form-submit"/>-->
+    <button>submit</button>
   </form>
+  <template x-id="song">
+    <iframe src="https://open.spotify.com/embed/track/73SBAGI4fPFm4VkB3NjXq8" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  </template>
   
-  <iframe src="https://open.spotify.com/embed/track/73SBAGI4fPFm4VkB3NjXq8" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  
   
   <!-- Scripts -->
   <script>
+  function songSearch() {
+    return {
+    songSearch: "---",
+    pokemon: null,
+    isLoading: false,
+    fetchSong() {
+      this.isLoading = true;
+      
+      const data = { username: 'example' };
+      
+      fetch(`https://hooks.zapier.com/hooks/catch/835758/ouz6lbw/${this.songSearch}`, {
+        method: 'POST',
+        body: data
+      }).then(res => res.json())
+        .then(data => {
+          this.isLoading = false;
+          this.pokemon = data;
+        });
+    }
+  };
+}
+
+    
+    
+    
+    
+    /*
     // POST form data to zapier on submit
     $('#myForm').submit(function(e){
       e.preventDefault();
@@ -30,6 +69,9 @@
         }
       });
     });
+    */
+  
+    
   </script>
 </body>
 </html>
