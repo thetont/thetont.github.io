@@ -13,6 +13,10 @@
     <button type="submit" @click="fetchSong()" :class="[isLoading ? 'disallowed' : '']">Search</button>
   </div>
   
+  <template x-id="song">
+    <iframe src="https://open.spotify.com/embed/track/" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  </template>
+  
   <hr/>
   
   <form id="myForm" action="https://hooks.zapier.com/hooks/catch/835758/ouz6lbw/" type="POST">
@@ -20,9 +24,7 @@
     <!--<input type="submit" value="Submit" id="Form-submit"/>-->
     <button>submit</button>
   </form>
-  <template x-id="song">
-    <iframe src="https://open.spotify.com/embed/track/73SBAGI4fPFm4VkB3NjXq8" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-  </template>
+
   
   
   
