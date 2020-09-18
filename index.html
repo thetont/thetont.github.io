@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>My Website</title>
+  
+  <!--  Meta  -->
+  <meta charset="UTF-8" />
+  <title>FFS</title>
 </head>
-
-<body bgcolor="#f2f2f2">
-    <h1>Hello.</h1>
+<body>
+  <!--<form id="myForm" action="https://hooks.zapier.com/hooks/catch/835758/ouz6lbw/" type="POST">-->
+    <form id="myForm" type="POST">
+    <input type="text" name="song-name" placeholder="What's your song?"/>
+    <input type="submit" value="Submit" id="Form-submit"/>
+  </form>
+  
+  <iframe src="https://open.spotify.com/embed/track/73SBAGI4fPFm4VkB3NjXq8" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  
+  <!-- Scripts -->
+  <script>
+    // POST form data to zapier on submit
+    $('#myForm').submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        url:'https://hooks.zapier.com/hooks/catch/835758/ouz6lbw/',
+        type:'post',
+        data:$('#myForm').serialize(),
+        success:function(){
+          console.log("success");
+          // Redirect to another ssuccess page
+          //window.location = "#";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
